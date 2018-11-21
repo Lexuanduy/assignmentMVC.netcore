@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication4.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplication4.Models;
 
 namespace WebApplication4
 {
@@ -33,7 +34,7 @@ namespace WebApplication4
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddDbContext<MyDbContext>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
